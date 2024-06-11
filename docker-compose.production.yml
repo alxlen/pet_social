@@ -18,7 +18,7 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql/data
   backend:
-    image: alxlen/taski_backend
+    image: alxlen/kittygram_backend
     environment:
       DOCKER_USERNAME: ${DOCKER_USERNAME}
       DOCKER_PASSWORD: ${DOCKER_PASSWORD}
@@ -37,12 +37,12 @@ services:
       USER: ${USER}
       SSH_KEY: ${SSH_KEY}
       SSH_PASSPHRASE: ${SSH_PASSPHRASE}
-    image: alxlen/taski_frontend
+    image: alxlen/kittygram_frontend
     command: cp -r /app/build/. /static/
     volumes:
       - static:/static
   gateway:
-    image: alxlen/taski_gateway
+    image: alxlen/kittygram_gateway
     environment:
       DOCKER_USERNAME: ${DOCKER_USERNAME}
       DOCKER_PASSWORD: ${DOCKER_PASSWORD}
