@@ -8,20 +8,22 @@ volumes:
 services:
   db:
     image: postgres:13
+    env_file:
+      - .env
     volumes:
       - pg_data:/var/lib/postgresql/data
   backend:
     image: alxlen/kittygram_backend
+    env_file:
+      - .env
     depends_on:
       - db
     volumes:
       - static:/backend_static
-      - media:/media
+      - media:/app/media
   frontend:
     image: alxlen/kittygram_frontend
     command: cp -r /app/build/. /static/
-    depends_on:
-      - backend
     volumes:
       - static:/static
   gateway:
@@ -29,7 +31,7 @@ services:
     ports:
       - 9000:80
     depends_on:
-      - frontend
+      - backend
     volumes:
       - static:/static
-      - media:/media
+      - media:/app/media
