@@ -1,0 +1,57 @@
+version: '3'
+
+volumes:
+  pg_data:
+  static:
+  media:
+
+services:
+  db:
+    image: postgres:13
+    environment:
+      DOCKER_USERNAME: ${DOCKER_USERNAME}
+      DOCKER_PASSWORD: ${DOCKER_PASSWORD}
+      HOST: ${HOST}
+      USER: ${USER}
+      SSH_KEY: ${SSH_KEY}
+      SSH_PASSPHRASE: ${SSH_PASSPHRASE}
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+  backend:
+    image: alxlen/taski_backend
+    environment:
+      DOCKER_USERNAME: ${DOCKER_USERNAME}
+      DOCKER_PASSWORD: ${DOCKER_PASSWORD}
+      HOST: ${HOST}
+      USER: ${USER}
+      SSH_KEY: ${SSH_KEY}
+      SSH_PASSPHRASE: ${SSH_PASSPHRASE}
+    volumes:
+      - static:/backend_static
+      - media:/media
+  frontend:
+    environment:
+      DOCKER_USERNAME: ${DOCKER_USERNAME}
+      DOCKER_PASSWORD: ${DOCKER_PASSWORD}
+      HOST: ${HOST}
+      USER: ${USER}
+      SSH_KEY: ${SSH_KEY}
+      SSH_PASSPHRASE: ${SSH_PASSPHRASE}
+    image: alxlen/taski_frontend
+    command: cp -r /app/build/. /static/
+    volumes:
+      - static:/static
+  gateway:
+    image: alxlen/taski_gateway
+    environment:
+      DOCKER_USERNAME: ${DOCKER_USERNAME}
+      DOCKER_PASSWORD: ${DOCKER_PASSWORD}
+      HOST: ${HOST}
+      USER: ${USER}
+      SSH_KEY: ${SSH_KEY}
+      SSH_PASSPHRASE: ${SSH_PASSPHRASE}
+    ports:
+      - 9000:80
+    volumes:
+      - static:/static
+      - media:/media
