@@ -18,7 +18,7 @@ services:
       - db
     volumes:
       - static:/backend_static
-      - media:/app/media
+      - media:/media
   frontend:
     image: alxlen/kittygram_frontend
     command: cp -r /app/build/. /static/
@@ -32,4 +32,4 @@ services:
       - backend
     volumes:
       - static:/static
-      - media:/app/media
+      - media:/media
