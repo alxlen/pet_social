@@ -31,26 +31,26 @@ API предоставляет следующие возможности:
 Убедитесь, что в репозитории присутствует файл docker-compose.production.yml, 
 Dockerfiles для backend, frontend и nginx.
 
-Добавьте в корень проекта файл .env со следующими переменными окружения:
-[ ] ALLOWED_HOSTS='Адрес вашего сервера'
-[ ] DB_HOST=db
-[ ] DB_PORT=5432
-[ ] DEBUG=False
-[ ] DOCKER_USERNAME='Ваше имя пользователя на DockerHub'
-[ ] POSTGRES_DB=django
-[ ] POSTGRES_PASSWORD=mysecretpassword
-[ ] POSTGRES_USER=django_user
-[ ] SECRET_KEY='Ваш секретный пароль для Django'
+Добавьте в корень проекта файл .env со следующими переменными окружения:  
+- ALLOWED_HOSTS='Адрес вашего сервера'  
+- DB_HOST=db  
+- DB_PORT=5432  
+- DEBUG=False  
+- DOCKER_USERNAME='Ваше имя пользователя на DockerHub'  
+- POSTGRES_DB=django  
+- POSTGRES_PASSWORD=mysecretpassword  
+- POSTGRES_USER=django_user  
+- SECRET_KEY='Ваш секретный пароль для Django'  
 
 Перейдите в настройки вашего репозитория на GitHub и добавьте следующие секреты:
-[ ] DOCKER_USERNAME: Ваше имя пользователя на DockerHub.
-[ ] DOCKER_PASSWORD: Ваш пароль на DockerHub.
-[ ] HOST: Адрес вашего сервера для деплоя.
-[ ] USER: Имя пользователя для подключения по SSH.
-[ ] SSH_KEY: Приватный SSH-ключ для подключения к серверу.
-[ ] SSH_PASSPHRASE: Пароль от SSH-ключа.
-[ ] TELEGRAM_TO: Идентификатор чата Telegram, куда будет отправлено уведомление.
-[ ] TELEGRAM_TOKEN: Токен вашего Telegram-бота.
+- DOCKER_USERNAME: Ваше имя пользователя на DockerHub  
+- DOCKER_PASSWORD: Ваш пароль на DockerHub  
+- HOST: Адрес вашего сервера для деплоя  
+- USER: Имя пользователя для подключения по SSH  
+- SSH_KEY: Приватный SSH-ключ для подключения к серверу  
+- SH_PASSPHRASE: Пароль от SSH-ключа  
+- TELEGRAM_TO: Идентификатор чата Telegram, куда будет отправлено уведомление  
+- TELEGRAM_TOKEN: Токен вашего Telegram-бота  
 
 Сделайте пуш в ветку main вашего репозитория. 
 GitHub Actions автоматически запустит workflow:
